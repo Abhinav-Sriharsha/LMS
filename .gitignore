@@ -1,0 +1,7 @@
+# Dependency directories
+node/node_modules/
+react/node_modules/
+
+# Logs
+node/logs
+react/logs
