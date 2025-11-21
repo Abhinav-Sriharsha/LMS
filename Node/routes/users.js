@@ -10,21 +10,13 @@ router.get('/', function (req, res, next) {
 router.post('/login', async function (req, res, next) {
   try {
     let query = `
-      SELECT 
-      u.userId,
-      u.name,
-      u.email,
-      u.userType,
-
-      ut.userTypeName,
-      ut.userTypeCode
-
-      FROM users u
-
-      LEFT JOIN usertype ut ON ut.userTypeId = u.userType
-
+      SELECT
+        userId,
+        name,
+        email,
+        userTypeCode
+      FROM users
       WHERE email = '${req.body.email}'
-
     `;
 
     let user = await db.customQuery(query);
