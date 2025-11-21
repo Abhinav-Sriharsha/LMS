@@ -1,19 +1,13 @@
 // Import the mysql module
 const mysql = require('mysql');
+require('dotenv').config();
 
 // Create a MySQL connection object with the necessary configuration
 const connection = mysql.createConnection({
-  // local
-  // host: 'localhost',
-  // user: 'root',
-  // password: 'root',
-  // database: 'lms',
-
-  // dev
-  host: 'lms-db.ch2oicokcn7t.us-east-2.rds.amazonaws.com',
-  user: 'root',
-  password: 'KKdFqYn2HgbpSjJU1TKr',
-  database: 'lms',
+  host: process.env.DB_HOST || 'localhost',
+  user: process.env.DB_USER || 'root',
+  password: process.env.DB_PASSWORD || 'root',
+  database: process.env.DB_NAME || 'lms',
 });
 
 // Connect to the MySQL server
