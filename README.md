@@ -83,24 +83,92 @@ Our API and database are deployed on AWS, leveraging auto-scaling EC2 clusters w
 
 ## Setup and Installation
 
-1. Clone the repository:
+### Prerequisites
+- Node.js 18+ installed
+- npm or yarn package manager
+- AWS RDS MySQL database (for production)
+
+### Local Development Setup
+
+1. **Clone the repository:**
 
    ```bash
-   git clone <repository-url>
-
+   git clone https://github.com/Abhinav-Sriharsha/LMS.git
+   cd LMS
    ```
 
-2. Install dependencies:
+2. **Set up backend environment variables:**
 
    ```bash
-   cd learning-management-system
+   cd Node
+   cp .env.example .env
+   ```
+
+   Edit `Node/.env` and add your database credentials:
+   ```env
+   DB_HOST=your-rds-endpoint.us-east-2.rds.amazonaws.com
+   DB_USER=your_db_user
+   DB_PASSWORD=your_secure_password_here
+   DB_NAME=lms
+   PORT=5000
+   NODE_ENV=development
+   ```
+
+3. **Set up React environment variables:**
+
+   ```bash
+   cd ../React
+   cp .env.example .env.local
+   ```
+
+   Edit `React/.env.local`:
+   ```env
+   REACT_APP_API=http://localhost:5000
+   ```
+
+4. **Install backend dependencies:**
+
+   ```bash
+   cd ../Node
    npm install
-
    ```
 
-3. Start the development server:
+5. **Install frontend dependencies:**
 
    ```bash
-   npm start
-
+   cd ../React
+   npm install
    ```
+
+6. **Start the development servers:**
+
+   **Terminal 1 - Backend:**
+   ```bash
+   cd Node
+   npm start
+   ```
+
+   **Terminal 2 - Frontend:**
+   ```bash
+   cd React
+   npm start
+   ```
+
+### Environment Variables
+
+**IMPORTANT: Never commit `.env` files to version control!**
+
+- `.env` files are git-ignored and should only exist locally
+- Use `.env.example` files as templates for configuration
+- For CI/CD deployments (Vercel, Render), set environment variables in platform settings
+
+#### Backend Variables (Node/.env)
+- `DB_HOST`: AWS RDS endpoint
+- `DB_USER`: Database username
+- `DB_PASSWORD`: Database password (keep secret)
+- `DB_NAME`: Database name
+- `PORT`: Server port (default: 5000)
+- `NODE_ENV`: Environment (development/production)
+
+#### Frontend Variables (React/.env.local)
+- `REACT_APP_API`: Backend API endpoint
