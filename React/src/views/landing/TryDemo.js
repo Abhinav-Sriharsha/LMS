@@ -83,13 +83,16 @@ const TryDemo = () => {
       if (data.success && data.user) {
         localStorage.setItem('userDetails', JSON.stringify(data.user));
 
-        // Redirect based on role
-        if (data.user.userTypeCode === 'ADMIN') {
+        // Redirect based on role - same as AuthLogin
+        const userTypeCode = data.user.userTypeCode;
+        if (userTypeCode === 'ADMIN') {
           navigate('/courses');
-        } else if (data.user.userTypeCode === 'FACULTY') {
-          navigate('/dashboard');
-        } else if (data.user.userTypeCode === 'STUDENT') {
+        } else if (userTypeCode === 'STUDENT') {
           navigate('/announcements');
+        } else if (userTypeCode === 'FACULTY') {
+          navigate('/dashboard');
+        } else {
+          navigate('/dashboard');
         }
       } else {
         setError('Login failed. Please try again.');

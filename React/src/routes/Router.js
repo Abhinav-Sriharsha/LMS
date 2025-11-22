@@ -49,35 +49,33 @@ const Router = [
     element: <TryDemo />,
   },
   {
-    path: '/',
+    path: '/*',
     element: <FullLayout />,
     children: [
-      { path: '/', element: <Navigate to="/dashboard" /> },
+      { path: 'dashboard', exact: true, element: <Dashboard /> },
+      { path: 'dashboard/view-course/:id', exact: true, element: <CourseDetails /> },
 
-      { path: '/dashboard', exact: true, element: <Dashboard /> },
-      { path: '/dashboard/view-course/:id', exact: true, element: <CourseDetails /> },
+      { path: 'create-user', exact: true, element: <CreateUser /> },
 
-      { path: '/create-user', exact: true, element: <CreateUser /> },
+      { path: 'assignments', exact: false, element: <Assignments /> },
+      { path: 'assignments/view/:id', exact: false, element: <AssignmentDetails /> },
+      { path: 'assignments/create', exact: false, element: <CreateAssignment /> },
 
-      { path: '/assignments', exact: false, element: <Assignments /> },
-      { path: '/assignments/view/:id', exact: false, element: <AssignmentDetails /> },
-      { path: '/assignments/create', exact: false, element: <CreateAssignment /> },
+      { path: 'quiz', exact: false, element: <Quiz /> },
+      { path: 'quiz/create', exact: false, element: <CreateQuiz /> },
+      { path: 'quiz/view/:id', exact: false, element: <QuizDetails /> },
 
-      { path: '/quiz', exact: false, element: <Quiz /> },
-      { path: '/quiz/create', exact: false, element: <CreateQuiz /> },
-      { path: '/quiz/view/:id', exact: false, element: <QuizDetails /> },
+      { path: 'announcements', exact: false, element: <Announcement /> },
+      { path: 'announcements/create', exact: false, element: <CreateAnnouncement /> },
 
-      { path: '/announcements', exact: false, element: <Announcement /> },
-      { path: '/announcements/create', exact: false, element: <CreateAnnouncement /> },
+      { path: 'grades', exact: false, element: <Grades /> },
 
-      { path: '/grades', exact: false, element: <Grades /> },
+      { path: 'students', exact: false, element: <Students /> },
 
-      { path: '/students', exact: false, element: <Students /> },
+      { path: 'courses', exact: false, element: <Courses /> },
+      { path: 'courses/view/:id', exact: false, element: <CourseDetails /> },
 
-      { path: '/courses', exact: false, element: <Courses /> },
-      { path: '/courses/view/:id', exact: false, element: <CourseDetails /> },
-
-      { path: '/profile', exact: false, element: <Profile /> },
+      { path: 'profile', exact: false, element: <Profile /> },
 
       { path: '*', element: <Navigate to="/auth/404" /> },
     ],
