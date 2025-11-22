@@ -102,7 +102,7 @@ const LandingPage = () => {
             color="secondary"
             size="large"
             endIcon={<IconArrowRight />}
-            onClick={() => navigate('/try-demo')}
+            onClick={() => navigate('/auth/login')}
             sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
           >
             Try Now
@@ -209,7 +209,7 @@ const LandingPage = () => {
               variant="contained"
               size="large"
               endIcon={<IconArrowRight />}
-              onClick={() => navigate('/try-demo')}
+              onClick={() => navigate('/auth/login')}
               sx={{ px: 4, py: 1.5, fontSize: '1rem' }}
             >
               Get Started

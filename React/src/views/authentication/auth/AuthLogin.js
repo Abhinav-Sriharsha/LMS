@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Typography, Button, Stack, TextField, Grid, Divider } from '@mui/material';
+import { Box, Typography, Button, Stack, TextField, Grid } from '@mui/material';
 import { useNavigate } from 'react-router';
 const { REACT_APP_API } = process.env;
 
@@ -63,6 +63,22 @@ const AuthLogin = ({ title, subtitle, subtext }) => {
       ) : null}
 
       {subtext}
+
+      {/* Test Credentials Info */}
+      <Box sx={{ mb: 3, p: 2, bgcolor: '#f0f0f0', borderRadius: 1 }}>
+        <Typography variant="subtitle2" sx={{ fontWeight: 'bold', mb: 1 }}>
+          📝 Test Credentials:
+        </Typography>
+        <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
+          <strong>Admin:</strong> admin@lms.com / Admin@123
+        </Typography>
+        <Typography variant="caption" sx={{ display: 'block', mb: 1 }}>
+          <strong>Faculty:</strong> faculty1@lms.com / Faculty@123
+        </Typography>
+        <Typography variant="caption" sx={{ display: 'block' }}>
+          <strong>Student:</strong> student1@lms.com / Student@123
+        </Typography>
+      </Box>
 
       <Stack>
         <Box component="form" onSubmit={handleLogin}>

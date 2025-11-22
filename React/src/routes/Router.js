@@ -10,7 +10,6 @@ const Error = Loadable(lazy(() => import('../views/authentication/Error')));
 const Register = Loadable(lazy(() => import('../views/authentication/Register')));
 const Login = Loadable(lazy(() => import('../views/authentication/Login')));
 const LandingPage = Loadable(lazy(() => import('../views/landing/LandingPage')));
-const TryDemo = Loadable(lazy(() => import('../views/landing/TryDemo')));
 
 const Assignments = Loadable(lazy(() => import('../views/assignments/assignments')));
 const AssignmentDetails = Loadable(lazy(() => import('../views/assignments/AssignmentDetails')));
@@ -43,10 +42,6 @@ const Router = [
   {
     path: '/',
     element: <LandingPage />,
-  },
-  {
-    path: '/try-demo',
-    element: <TryDemo />,
   },
   {
     path: '/*',
