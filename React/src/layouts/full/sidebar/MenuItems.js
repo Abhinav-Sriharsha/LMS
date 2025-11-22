@@ -70,6 +70,12 @@ if (userTypeCode === 'FACULTY') {
       icon: IconSpeakerphone,
       href: '/announcements',
     },
+    {
+      id: uniqueId(),
+      title: 'Grades',
+      icon: IconTable,
+      href: '/grades',
+    },
   ];
 }
 
@@ -105,6 +111,12 @@ if (userTypeCode === 'STUDENT') {
       title: 'Announcements',
       icon: IconSpeakerphone,
       href: '/announcements',
+    },
+    {
+      id: uniqueId(),
+      title: 'Profile',
+      icon: IconUser,
+      href: '/profile',
     },
   ];
 }
