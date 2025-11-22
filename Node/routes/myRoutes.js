@@ -398,8 +398,8 @@ router.post('/student-score-list', async function (req, res, next) {
       LEFT JOIN studentcourse sc ON sc.studentId = u.userId AND sc.courseId = ${courseId}
       JOIN assignment a ON a.courseId = sc.courseId AND a.assignmentId = ${assignmentId}
       LEFT JOIN score s ON s.referenceId = a.assignmentId AND s.type = 'assignment' AND s.userId = u.userId
-      WHERE u.userType = 3;
-  
+      WHERE u.userTypeCode = 'STUDENT';
+
     `;
     } else {
       query = `
@@ -415,7 +415,7 @@ router.post('/student-score-list', async function (req, res, next) {
       LEFT JOIN studentcourse sc ON sc.studentId = u.userId AND sc.courseId = ${courseId}
       JOIN quiz q ON q.courseId = sc.courseId AND q.quizId = ${quizId}
       LEFT JOIN score s ON s.referenceId = q.quizId AND s.type = 'quiz' AND s.userId = u.userId
-      WHERE u.userType = 3;
+      WHERE u.userTypeCode = 'STUDENT';
   
     `;
     }
@@ -652,7 +652,7 @@ router.get('/student-by-course/:id', async function (req, res, next) {
         SELECT sc.studentId 
         FROM studentcourse sc 
         WHERE sc.courseId = ${courseId} 
-      ) AND u.userType = 3
+      ) AND u.userTypeCode = 'STUDENT'
 
 
     ORDER BY u.name
@@ -682,10 +682,10 @@ router.get('/faculty-by-course/:id', async function (req, res, next) {
     FROM users u
 
     WHERE u.userId ${includeFaculty === 'yes' ? 'NOT IN' : 'IN'} (
-        SELECT fc.facultyId 
-        FROM facultycourse fc 
-        WHERE fc.courseId = ${courseId} 
-      ) AND u.userType = 2
+        SELECT fc.facultyId
+        FROM facultycourse fc
+        WHERE fc.courseId = ${courseId}
+      ) AND u.userTypeCode = 'FACULTY'
 
 
     ORDER BY u.name
