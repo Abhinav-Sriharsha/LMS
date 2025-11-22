@@ -276,7 +276,7 @@ router.post('/create-quiz', async function (req, res, next) {
 router.get('/announcement', async function (req, res, next) {
   try {
     let query = `
-    SELECT 
+    SELECT
     a.announcementId,
     a.title,
     a.description,
@@ -284,7 +284,7 @@ router.get('/announcement', async function (req, res, next) {
     a.section,
     a.createdBy,
     u.name AS createdByName
-   
+
     FROM announcement a
 
     LEFT JOIN users u ON u.userId = a.createdBy
@@ -295,9 +295,10 @@ router.get('/announcement', async function (req, res, next) {
     let list = await db.customQuery(query);
 
     console.log('list: ', list);
-    res.json(list);
+    res.json(list && Array.isArray(list) ? list : []);
   } catch (error) {
-    res.json(error);
+    console.error('Announcement fetch error:', error);
+    res.json([]);
   }
 });
 
@@ -661,10 +662,10 @@ router.get('/student-by-course/:id', async function (req, res, next) {
 
     let list = await db.customQuery(query);
 
-    res.json(list);
+    res.json(list && Array.isArray(list) ? list : []);
   } catch (error) {
     console.log('ERROR: ', error);
-    res.json(error);
+    res.json([]);
   }
 });
 
@@ -694,10 +695,10 @@ router.get('/faculty-by-course/:id', async function (req, res, next) {
 
     let list = await db.customQuery(query);
 
-    res.json(list);
+    res.json(list && Array.isArray(list) ? list : []);
   } catch (error) {
     console.log('ERROR: ', error);
-    res.json(error);
+    res.json([]);
   }
 });
 
@@ -707,18 +708,20 @@ router.get('/faculty', async function (req, res, next) {
     let query = `SELECT userId, name, email, userTypeCode FROM users WHERE userTypeCode = 'FACULTY'`;
 
     let list = await db.customQuery(query);
-    res.json(list);
+    res.json(list && Array.isArray(list) ? list : []);
   } catch (error) {
-    res.json(error);
+    console.error('Faculty fetch error:', error);
+    res.json([]);
   }
 });
 
 router.get('/semester', async function (req, res, next) {
   try {
     let list = await db.getRecords('semester', null);
-    res.json(list);
+    res.json(list && Array.isArray(list) ? list : []);
   } catch (error) {
-    res.json(error);
+    console.error('Semester fetch error:', error);
+    res.json([]);
   }
 });
 
