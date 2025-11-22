@@ -704,11 +704,9 @@ router.get('/faculty-by-course/:id', async function (req, res, next) {
 // Other
 router.get('/faculty', async function (req, res, next) {
   try {
-    let where = {
-      userType: 2,
-    };
+    let query = `SELECT userId, name, email, userTypeCode FROM users WHERE userTypeCode = 'FACULTY'`;
 
-    let list = await db.getRecords('users', where);
+    let list = await db.customQuery(query);
     res.json(list);
   } catch (error) {
     res.json(error);
